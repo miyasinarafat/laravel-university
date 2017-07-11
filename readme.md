@@ -1,3 +1,2 @@
-<p align="center">
-#Laravel University
-</p>
+
+## Laravel University
