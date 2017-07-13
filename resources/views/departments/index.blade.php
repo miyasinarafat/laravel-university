@@ -11,7 +11,7 @@
 
 @section('main_content')
     <!-- BEGIN PAGE TITLE-->
-    <h1 class="page-title">Department List</h1>
+    <h1 class="page-title">@if(!isset($trashDepartments)) Department List @else Trash List @endif</h1>
     <!-- END PAGE TITLE-->
     <div class="row">
         <div class="col-md-12">
@@ -22,9 +22,14 @@
                 <div class="portlet-title">
                     <div class="caption font-dark">
                         <div class="btn-group">
+                            @if(!isset($trashDepartments))
                             <a href="{{ url('/departments/add') }}" class="btn sbold green"> Add New
                                 <i class="fa fa-plus"></i>
                             </a>
+                            @else
+                                <a href="{{ url('/departments') }}" class="btn sbold green"> Back to Index
+                                </a>
+                            @endif
                         </div>
                     </div>
                     <div class="tools"> </div>
@@ -40,14 +45,36 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($departments as $department)
+                        @php $i = 0; @endphp
+                        @if(isset($trashDepartments) && !$trashDepartments->isEmpty())
+                            @foreach($trashDepartments as $department)
+                                @php $i++; @endphp
+                                <tr>
+                                    <td>{{ $i }}</td>
+                                    <td>{{ $department->code }}</td>
+                                    <td>{{ $department->name }}</td>
+                                    <td>
+                                        <a href="{{ url('/departments/restore/'.$department->id) }}" class="btn sbold yellow" onclick="return confirm('Are You Sure!')">Restore</a>
+                                        <a href="{{ url('/departments/delete-permanently/'.$department->id) }}" class="btn sbold red" onclick="return confirm('Are You Sure!')">Delete Permanently</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            @endif
+                        @if(isset($departments) && !$departments->isEmpty())
+                            @foreach($departments as $department)
+                            @php $i++; @endphp
                             <tr>
-                                <td>{{ $department->id++ }}</td>
+                                <td>{{ $i }}</td>
                                 <td>{{ $department->code }}</td>
                                 <td>{{ $department->name }}</td>
-                                <td>{{ $department->created_at }}</td>
+                                <td>
+                                    <a href="{{ url('/departments/edit/'.$department->id) }}" class="btn sbold blue">Edit</a>
+                                    <a href="{{ url('/departments/delete/'.$department->id) }}" class="btn sbold red" onclick="return confirm('Are You Sure!')">Delete</a>
+                                </td>
                             </tr>
                         @endforeach
+                        @endif
+
                         </tbody>
                     </table>
                 </div>

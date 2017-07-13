@@ -38,6 +38,12 @@
                             <span class="title">Add New</span>
                         </a>
                     </li>
+                    <li class="nav-item ">
+                        <a href="{{ url('/departments/trash') }}" class="nav-link">
+                            <i class="fa fa-trash"></i>
+                            <span class="title">Trash List</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item ">

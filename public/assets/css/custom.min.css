@@ -1,3 +1,7 @@
 .mtb-10 {
     margin: 10px 0;
 }
+
+.alert-success {
+    color: #116169;
+}
