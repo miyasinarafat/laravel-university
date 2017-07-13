@@ -9,7 +9,8 @@ class DepartmentController extends Controller
 {
     public function index()
     {
-        return 'done';
+        $departments = Department::all();
+        return view('departments.index', compact('departments'));
     }
 
     public function create()
