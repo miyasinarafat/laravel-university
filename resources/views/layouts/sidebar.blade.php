@@ -27,13 +27,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item ">
-                        <a href="index.html" class="nav-link ">
+                        <a href="{{ url('/departments') }}" class="nav-link ">
                             <i class="glyphicon glyphicon-list-alt"></i>
                             <span class="title">View All</span>
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a href="" class="nav-link">
+                        <a href="{{ url('/departments/add') }}" class="nav-link">
                             <i class="glyphicon glyphicon-plus"></i>
                             <span class="title">Add New</span>
                         </a>
